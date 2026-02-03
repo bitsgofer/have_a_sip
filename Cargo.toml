@@ -1,0 +1,15 @@
+[workspace]
+members = [
+	"game",
+	"simulation"
+]
+resolver = "2"
+
+[workspace.package]
+name    = "have-a-sip"
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+bevy = { version = "0.18.0" }
+log  = { version = "0.4.29" }
