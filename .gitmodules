@@ -4,3 +4,6 @@
 [submodule "references/ImpatientProgrammerBevyRust"]
 	path = references/ImpatientProgrammerBevyRust
 	url = git@github.com:jamesfebin/ImpatientProgrammerBevyRust.git
+[submodule "references/bevy-project-template-nixos-wayland"]
+	path = references/bevy-project-template-nixos-wayland
+	url = git@github.com:drxm1/bevy-project-template-nixos-wayland.git
