@@ -36,15 +36,14 @@ $> just run
 
 ```
 .
-├── docs
-│   └── adr         # Architecture Decision Record
-├── flake.nix       # Packaged development tools
-├── Justfile        # All tasks
-├── Cargo.toml      # Shared depedencies of the project
-├── game            # Game binary (Bevy app)
-│   ├── Cargo.toml
+├── docs            # Documentation
+│   └── adr         # Architecture decision record(s)
+├── references      # Reference code/demos, managed as git submodule(s)
+│   ├── bevy
+│   ├── ImpatientProgrammerBevyRust
+│   └── bevy-project-template-nixos-wayland
+├── assets          # Game assets (e.g: graphics, music, text, etc)
+├── simulation      # Game logic
 │   └── src
-└── simulation      # Game logic
-    ├── Cargo.toml
-    └── src
+└── game            # Game binary
 ```
