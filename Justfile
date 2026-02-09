@@ -4,6 +4,10 @@
 develop:
 	nix develop
 
+# Build the game.
+build:
+	cargo build
+
 # Run the game.
 run:
     cargo run -p have-a-sip
