@@ -1,3 +1,6 @@
 [submodule "references/bevy"]
 	path = references/bevy
 	url = git@github.com:bevyengine/bevy.git
+[submodule "references/ImpatientProgrammerBevyRust"]
+	path = references/ImpatientProgrammerBevyRust
+	url = git@github.com:jamesfebin/ImpatientProgrammerBevyRust.git
