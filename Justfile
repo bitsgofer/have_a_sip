@@ -12,6 +12,9 @@ build:
 run:
     cargo run -p have-a-sip
 
+# Run assets-related tasks
+mod lfs 'justfiles/assets/assets.just'
+
 # ==============================================================================
 
 # Format all the code.
