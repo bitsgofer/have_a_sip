@@ -16,7 +16,7 @@ run:
 
 # Format all the code.
 [parallel]
-fmt: fmt-justfile fmt-nix fmt-rust
+fmt: fmt-justfile fmt-nix fmt-rust fmt-scripts-bash
     nixfmt flake.nix
 
 [group('fmt')]
@@ -34,10 +34,15 @@ fmt-nix:
 fmt-rust:
     cargo fmt
 
+[group('fmt')]
+[private]
+fmt-scripts-bash:
+    find . -name '*.bash' -exec shfmt -w {} +
+
 # ==============================================================================
 
 # Lint all the code.
-lint: lint-justfile lint-nix lint-rust
+lint: lint-justfile lint-nix lint-rust lint-scripts-bash
 
 [group('lint')]
 [private]
@@ -48,6 +53,11 @@ lint-justfile:
 [private]
 lint-nix:
     nixfmt --check flake.nix
+
+[group('lint')]
+[private]
+lint-scripts-bash:
+    find . -name '*.bash' -exec shellcheck {} +
 
 [group('lint')]
 [private]

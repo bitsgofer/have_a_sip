@@ -52,6 +52,8 @@
         commonTools = with pkgs; [
           git-lfs
           just
+          shellcheck
+          shfmt
         ];
         linuxTools = with pkgs; [
           pkg-config
