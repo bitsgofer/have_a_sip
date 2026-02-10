@@ -110,6 +110,10 @@
           ++ pkgs.lib.optionals isDarwin darwinTools;
 
           shellHook = ''
+            # All assets are put into: [repo root]/assets, so we configure Bevy
+            # to always look there.
+            export BEVY_ASSET_ROOT="$(git rev-parse --show-toplevel)"
+
             echo "Development env loaded!"
           ''
           + (if isLinux then linuxShellHook else darwinShellHook);
