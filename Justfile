@@ -2,11 +2,11 @@
 
 # Enter the Nix development shell. Ignore if already using direnv.
 develop:
-	nix develop
+    nix develop
 
 # Build the game.
 build:
-	cargo build
+    cargo build
 
 # Run the game.
 run:
