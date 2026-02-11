@@ -17,12 +17,12 @@ fn main() {
                     ..default()
                 }),
         )
-        .add_systems(Startup, setup)
+        .add_systems(Startup, setup_camera)
         .add_plugins(PlayerPlugin)
         .run();
 }
 
-fn setup(mut commands: Commands) {
+fn setup_camera(mut commands: Commands) {
     simulation::print_copyright();
     commands.spawn((
         Camera2d,
