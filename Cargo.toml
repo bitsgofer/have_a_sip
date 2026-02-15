@@ -4,6 +4,7 @@ members = [
 	"simulation"
 ]
 resolver = "2"
+exclude = ["references"]
 
 [workspace.package]
 name    = "have-a-sip"
