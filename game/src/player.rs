@@ -113,7 +113,11 @@ fn move_player(
             };
         }
 
-        transform.scale.x = if anim.facing == Facing::Left { -1.0 } else { 1.0 };
+        transform.scale.x = if anim.facing == Facing::Left {
+            -1.0
+        } else {
+            1.0
+        };
     } else {
         anim.moving = false;
     }
@@ -186,4 +190,3 @@ fn row_zero_based(facing: Facing) -> usize {
         Facing::Right => 2,
     }
 }
-
