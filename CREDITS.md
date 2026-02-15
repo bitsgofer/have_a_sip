@@ -9,6 +9,9 @@
 - [Character Template](https://erisesra.itch.io/character-templates-pack): Placeholder character spritesheet</br>
   by [ErisEsra](https://erisesra.itch.io/)
 
+- [modern_exteriors](https://limezu.itch.io/modernexteriors): Placeholder exteriors environment spritesheet</br>
+  by [LimeZu](https://limezu.itch.io/)
+
 ## Music
 
 ## Others

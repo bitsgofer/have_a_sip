@@ -1,2 +1,5 @@
 references/assets/character/** filter=lfs diff=lfs merge=lfs -text
 references/assets/character/CREDITS.md !filter !diff !merge text
+
+references/assets/modern_exteriors/** filter=lfs diff=lfs merge=lfs -text
+references/assets/modern_exteriors/CREDITS.md !filter !diff !merge text
