@@ -13,7 +13,7 @@ run:
     cargo run -p have-a-sip
 
 # Run assets-related tasks
-mod lfs 'justfiles/assets/assets.just'
+mod assets 'justfiles/assets/assets.just'
 
 # ==============================================================================
 
