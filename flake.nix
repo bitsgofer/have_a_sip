@@ -79,7 +79,7 @@
         ];
 
         # buildInputs: platform-specific shell hooks
-        linuxShellHook = ''
+        linuxShellHookBase = ''
           export LD_LIBRARY_PATH=${
             pkgs.lib.makeLibraryPath [
               pkgs.vulkan-loader
@@ -93,30 +93,45 @@
             ]
           }:$LD_LIBRARY_PATH
 
-          export VK_ICD_FILENAMES=${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json
-          export VK_LAYER_PATH=${pkgs.mesa}/share/vulkan/implicit_layer.d
           export ALSA_PLUGIN_DIR=${pkgs.pipewire}/lib/alsa-lib
         '';
+        linuxShellHookMesa = linuxShellHookBase + ''
+          export VK_ICD_FILENAMES=${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json
+          export VK_LAYER_PATH=${pkgs.mesa}/share/vulkan/implicit_layer.d
+        '';
+        # NVIDIA: don't set VK_ICD_FILENAMES; the system NVIDIA driver
+        # provides the Vulkan ICD at standard paths (e.g. /usr/share/vulkan/icd.d/).
+        linuxShellHookNvidia = linuxShellHookBase;
         darwinShellHook = ""; # macOS uses Metal via wgpu => no Vulkan config
+
+        commonShellHook = ''
+          # All assets are put into: [repo root]/assets, so we configure Bevy
+          # to always look there.
+          export BEVY_ASSET_ROOT="$(git rev-parse --show-toplevel)"
+
+          echo "Development env loaded!"
+        '';
+        commonBuildInputs = [
+          rustToolchain
+        ]
+        ++ commonTools
+        ++ pkgs.lib.optionals isLinux linuxTools
+        ++ pkgs.lib.optionals isDarwin darwinTools;
 
       in
       {
+        # Default shell (Mesa/AMD GPU)
         devShells.default = pkgs.mkShell {
-          buildInputs = [
-            rustToolchain
-          ]
-          ++ commonTools
-          ++ pkgs.lib.optionals isLinux linuxTools
-          ++ pkgs.lib.optionals isDarwin darwinTools;
+          buildInputs = commonBuildInputs;
+          shellHook = commonShellHook
+            + (if isLinux then linuxShellHookMesa else darwinShellHook);
+        };
 
-          shellHook = ''
-            # All assets are put into: [repo root]/assets, so we configure Bevy
-            # to always look there.
-            export BEVY_ASSET_ROOT="$(git rev-parse --show-toplevel)"
-
-            echo "Development env loaded!"
-          ''
-          + (if isLinux then linuxShellHook else darwinShellHook);
+        # NVIDIA GPU shell: nix develop .#nvidia
+        devShells.nvidia = pkgs.mkShell {
+          buildInputs = commonBuildInputs;
+          shellHook = commonShellHook
+            + (if isLinux then linuxShellHookNvidia else darwinShellHook);
         };
       }
     );
